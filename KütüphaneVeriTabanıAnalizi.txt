@@ -17,14 +17,16 @@ katalog veri tabanını bize sunacaktır. (Kitap Bagış sistemi otamasyonu)
 3-Veri tabanında hangi veriler depolanacak?
 
 -Kitap Bilgileri
--Yayınevi Bilgileri
--Yazar Bilgileri
+-Kitap Yayınevi Bilgileri
+-Kitap Yazar Bilgileri
 -ISBN 
 -Eser Adı
 -Basım Tarihi
 -Adet Bilgisi
 -Dil Bilgisi
 -Kitap Türü
+-Bağış yapan Kişi/kurum bilgisi 
+-Bağış  adeti bilgisi
 
 4-Veri tabanında ne tür veriler depolanacak?
 
@@ -40,9 +42,9 @@ Eser Adı Verileri
 ---------------------
 Basım Tarihi Verileri
 ---------------------
-Adet bilgisi verileri
-----------------------
 Dil Bilgisi verileri
 ----------------------
 Kitap Türü Verileri
+----------------------
+Bağış yapan kurum bilgiler
 ----------------------
