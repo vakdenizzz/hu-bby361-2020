@@ -1,9 +1,9 @@
-1-Hayata geçirilecek sistem neye hizmet edecek?
+1-Hayata geçirilecek sistem neye hizmet edecek
 
 Hayata geçirilecek kütüphane,Köy okullarına bagışlanan kitaplardan oluşan kütüphanenin
 katalog veri tabanını bize sunacaktır. (Kitap Bagış sistemi otamasyonu)
 
-2-Veri tabanı hangi ihtiyaçları karşılayacak?
+2-Veri tabanı hangi ihtiyaçları karşılayacak
 
 -Bağışlanacak kitaba hangi köy okulunun ihtiyacı varsa bu otamasyon sistemi sayesinde o okula ulaşacak ve ihtiyaç giderilecek.
 -Aynı kitabın bir okulda yıgılmasını önlecek.
@@ -14,37 +14,33 @@ katalog veri tabanını bize sunacaktır. (Kitap Bagış sistemi otamasyonu)
 -Köy okullarının bilgileri sağlanacak
 -Kütüphandeki kitap sayısı hakkında bilgi saglanacak.
 
-3-Veri tabanında hangi veriler depolanacak?
+3-Veri tabanında hangi veriler depolanacak
 
 -Kitap Bilgileri
 -Kitap Yayınevi Bilgileri
 -Kitap Yazar Bilgileri
+-Bağış yapan Kişikurum bilgisi 
+
+
+4-Veri tabanında ne tür veriler depolanacak
+
+Kitap Bilgisi Verileri
 -ISBN 
 -Eser Adı
 -Basım Tarihi
 -Adet Bilgisi
 -Dil Bilgisi
--Kitap Türü
--Bağış yapan Kişi/kurum bilgisi 
--Bağış  adeti bilgisi
 
-4-Veri tabanında ne tür veriler depolanacak?
-
-Kitap Bilgisi Verileri
-----------------------
 Yayınevi Bilgisi Verileri
-----------------------
+-Yayınevi Adı
+-Yayınevi Yer Bilgisi
+
 Yazar Bilgisi Verileri
-----------------------
-ISBN
-----------------------
-Eser Adı Verileri
----------------------
-Basım Tarihi Verileri
----------------------
-Dil Bilgisi verileri
-----------------------
-Kitap Türü Verileri
-----------------------
-Bağış yapan kurum bilgiler
-----------------------
+-Yazar Adı
+-Yazar Soyadı
+-Yazarın Kimlik No
+
+Bağış yapan Kişikurum Bilgisi Verileri
+-Kurum/kişi Adı
+-Kurum/kişi No
+-Kurum/kişi Yeri
