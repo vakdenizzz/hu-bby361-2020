@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 03 Kas 2020, 10:18:49
+-- Üretim Zamanı: 04 Kas 2020, 13:08:07
 -- Sunucu sürümü: 10.4.14-MariaDB
 -- PHP Sürümü: 7.4.10
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `bagısbilgisi` (
   `BagısNo` int(11) NOT NULL COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n',
   `BagısTipi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisi ismi ve  özel mi yoksa kurum mu bagış yapıyor bilgisi girilecek\r\n',
-  `BagısAdı` varchar(99) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Bagış yapan kurum veya kisinin, ismi girilecek.\r\n',
-  `BagısEPosta` varchar(99) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Bagış yapan kurum veya kisinin kurumsal iletisim icin kullandığı mail adresi girilecek.\r\n'
+  `BagısAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin, ismi girilecek.\r\n',
+  `BagısEPosta` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin kurumsal iletisim icin kullandığı mail adresi girilecek.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -39,16 +39,16 @@ CREATE TABLE `bagısbilgisi` (
 --
 
 INSERT INTO `bagısbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPosta`) VALUES
-(1, 'kisi bagısı', 'volkan akdeniz', 'volkan_98fb@gmail.com'),
-(2, 'kisi', 'ahmet dursun', 'ahmett99@gmail.co0'),
-(3, 'özel', 'hacettepe kütüphanesi', 'hacettepete@edu.tr'),
-(17, 'ÖzelBagıs', NULL, NULL),
-(18, 'Özel(hacettepe)', NULL, NULL),
-(19, 'Özel(Bilkent)', NULL, NULL),
-(21, 'Özel-Kişi', NULL, NULL),
-(25, 'Özel(çankaya)', NULL, NULL),
-(26, 'Kişi-Özel', NULL, NULL),
-(27, 'Kişi-kişi', NULL, NULL);
+(1, 'kisi bagısı', 'Volkan Akdeniz', 'volkan_98fb@gmail.com'),
+(2, 'kisi', 'Ahmet Dursun', 'ahmett99@gmail.com'),
+(3, 'özel', 'hacettepe kütüphanesi', 'hacettepete@edu.tr.com'),
+(17, 'ÖzelBagıs', 'Bilkent Üniversitesi', 'bilkent@edu.tr.com'),
+(18, 'Özel', 'Çankaya Üniversitesi', 'cankaya@edu.tr.com'),
+(19, 'Özel', 'Bilkent Üniversitesi', 'bilkent@edu.tr.com'),
+(21, 'Kişi', 'Cemal Can', 'cemallaydın@gmail.com'),
+(25, 'Özel', 'Çankaya Üniversitesi', 'cankaya@edu.tr.com'),
+(26, 'Kişi', 'Volkan Akdeniz', 'v.akdenizzz@gmail.com'),
+(27, 'Kişi', 'Volkan Akdeniz', 'v.akdenizzz@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -59,10 +59,10 @@ INSERT INTO `bagısbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPos
 CREATE TABLE `kitapbilgileri` (
   `KitapKayıtNo` int(11) NOT NULL COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
   `ISBN` varchar(13) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitabın kimligi niteligi tasıyan ISBN bilgisi bu alana INT olarak girilecektir.\r\n',
-  `KitapYayımTarihi` date DEFAULT current_timestamp() COMMENT 'Kitabın basım tarihi sisteme girilecektir.\r\n',
+  `KitapYayımTarihi` year(4) NOT NULL DEFAULT current_timestamp() COMMENT 'Kitabın basım tarihi sisteme girilecektir.\r\n',
   `KitapAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitap ismi girilecek.\r\n',
-  `KitapAdetBilgisi` int(99) DEFAULT NULL COMMENT 'Kitabın kütüphade kaç adet olduğu bilgisi girilecek\r\n',
-  `DilBilgisi` varchar(99) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Kitabın hangi dilde yazıldıgı bilgisine yer verilecek\r\n'
+  `KitapAdetBilgisi` int(99) NOT NULL COMMENT 'Kitabın kütüphade kaç adet olduğu bilgisi girilecek\r\n',
+  `DilBilgisi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitabın hangi dilde yazıldıgı bilgisine yer verilecek\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -70,16 +70,16 @@ CREATE TABLE `kitapbilgileri` (
 --
 
 INSERT INTO `kitapbilgileri` (`KitapKayıtNo`, `ISBN`, `KitapYayımTarihi`, `KitapAdı`, `KitapAdetBilgisi`, `DilBilgisi`) VALUES
-(1, '1234567899876', '0000-00-00', 'Kürk Mantolu Madonna', 1, 'Türkçe'),
-(14, '1234567899879', NULL, 'Hayvan ciftligi', NULL, NULL),
-(16, '1234567899856', '0000-00-00', 'Körlük', NULL, NULL),
-(17, '1234567899645', '2020-11-03', 'Fareler ve İnsanlar', NULL, NULL),
-(19, '1234567899893', NULL, 'Şeker Portakalı', NULL, NULL),
-(20, '1234567899817', '2020-11-03', 'Simyacı', NULL, NULL),
-(21, '123456789665', '2018-09-15', 'Cesur Yeni Dünya', NULL, NULL),
-(22, '1234567897483', '2020-03-10', 'Başkalarının Hayatı', NULL, NULL),
-(23, '1234567893254', '2020-08-18', 'Kız Babası ve Kedi', NULL, NULL),
-(24, '1234567899833', '2020-10-06', 'Madeline Miller', NULL, NULL);
+(1, '1234567899876', 2020, 'Kürk Mantolu Madonna', 1, 'Türkçe'),
+(14, '2234567899879', 2020, 'Hayvan ciftligi', 0, 'Türkçe'),
+(16, '4334567899856', 2020, 'Körlük', 1, 'Türkçe'),
+(17, '3634567899645', 2020, 'Fareler ve İnsanlar', 2, 'Türkçe'),
+(19, '7534567899893', 2020, 'Şeker Portakalı', 4, 'Türkçe'),
+(20, '2734567899817', 2020, 'Simyacı', 8, 'Türkçe'),
+(21, '983456789665', 2018, 'Cesur Yeni Dünya', 3, 'İngilizce'),
+(22, '7434567897483', 2020, 'Başkalarının Hayatı', 5, 'İngilizce'),
+(23, '6634567893254', 2020, 'Kız Babası ve Kedi', 2, 'İngilizce'),
+(24, '6934567899833', 2020, 'Madeline Miller', 7, 'İngilizce');
 
 -- --------------------------------------------------------
 
@@ -91,8 +91,8 @@ CREATE TABLE `yayınevi` (
   `YayıneviNo` int(11) NOT NULL COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
   `YayıneviKayıtTarihi` date NOT NULL DEFAULT current_timestamp() COMMENT 'Yayınevi kayıt tarihi sisteme girilecektir.\r\n',
   `YayıneviAdı` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevi ismine yer verilecek.\r\n',
-  `YayıneviUrl` varchar(98) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Yayınevine ait web sayfası veya sosyal medya linki yer alacak.\r\n',
-  `YayıneviEPosta` varchar(98) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Yayınevinin  kurumsal iletisimi gerceklestirdigi e posta adresi yer alacak.\r\n'
+  `YayıneviUrl` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevine ait web sayfası veya sosyal medya linki yer alacak.\r\n',
+  `YayıneviEPosta` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevinin  kurumsal iletisimi gerceklestirdigi e posta adresi yer alacak.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -100,16 +100,16 @@ CREATE TABLE `yayınevi` (
 --
 
 INSERT INTO `yayınevi` (`YayıneviNo`, `YayıneviKayıtTarihi`, `YayıneviAdı`, `YayıneviUrl`, `YayıneviEPosta`) VALUES
-(1, '2020-10-05', 'can', NULL, NULL),
-(2, '2020-11-03', 'Can Yayınları', NULL, NULL),
-(3, '2020-11-03', ' Kırmızı Kedi', NULL, NULL),
-(4, '2020-10-15', 'Sel Yayıncılık', NULL, NULL),
-(5, '2020-11-03', ' Can Çocuk Yayınları', NULL, NULL),
-(7, '2020-11-01', 'Can Yayın', NULL, NULL),
-(8, '2020-09-08', 'İthaki Yayınları', NULL, NULL),
-(9, '2020-08-04', 'Beyaz Baykuş', NULL, NULL),
-(10, '2020-07-14', 'Destek Yayınları', NULL, NULL),
-(13, '2020-08-20', 'İthaki Yayın', NULL, NULL);
+(1, '2020-10-05', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
+(2, '2020-11-03', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
+(3, '2020-11-03', ' Kırmızı Kedi', 'https://www.kirmizikedi.com/', 'satis@kirmizikedi.com'),
+(4, '2020-10-15', 'Sel Yayıncılık', 'https://www.selyayincilik.com/', 'destek@selyayincilik.com'),
+(5, '2020-11-03', ' Can Çocuk Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com '),
+(7, '2020-11-01', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com '),
+(8, '2020-09-08', 'İthaki Yayınları', 'http://www.ithaki.com.tr/', 'info@ithaki.com.tr'),
+(9, '2020-08-04', 'Beyaz Baykuş', 'https://beyazbaykus.com/', 'info@beyazbaykus.com'),
+(10, '2020-07-14', 'Destek Yayınları', 'https://destekdukkan.com/anasayfa', 'info@destekyayinlari.com'),
+(13, '2020-08-20', 'İthaki Yayın', 'http://www.ithaki.com.tr/', '	\r\ninfo@ithaki.com.tr');
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,7 @@ CREATE TABLE `yazarbilgileri` (
 --
 
 INSERT INTO `yazarbilgileri` (`YazarNo`, `YazarAdı`, `YazarDoğum Tarihi`, `YazarURL`) VALUES
-(1, 'ali', '2020-10-28', NULL),
+(1, 'Sabahhatin Ali', '2020-10-28', NULL),
 (2, 'George Orwell', '1988-08-04', NULL),
 (3, 'Jose Saramago', '1990-11-09', NULL),
 (4, 'John Steinbeck', '1988-11-13', NULL),
@@ -148,34 +148,25 @@ INSERT INTO `yazarbilgileri` (`YazarNo`, `YazarAdı`, `YazarDoğum Tarihi`, `Yaz
 -- Tablo için indeksler `bagısbilgisi`
 --
 ALTER TABLE `bagısbilgisi`
-  ADD PRIMARY KEY (`BagısNo`),
-  ADD UNIQUE KEY `BagısTipi` (`BagısTipi`),
-  ADD UNIQUE KEY `BagısAdı` (`BagısAdı`),
-  ADD UNIQUE KEY `BagısEposta` (`BagısEPosta`);
+  ADD PRIMARY KEY (`BagısNo`);
 
 --
 -- Tablo için indeksler `kitapbilgileri`
 --
 ALTER TABLE `kitapbilgileri`
-  ADD PRIMARY KEY (`KitapKayıtNo`),
-  ADD UNIQUE KEY `ISBN` (`ISBN`),
-  ADD UNIQUE KEY `KitapAdı` (`KitapAdı`),
-  ADD UNIQUE KEY `DilBilgisi` (`DilBilgisi`);
+  ADD PRIMARY KEY (`KitapKayıtNo`);
 
 --
 -- Tablo için indeksler `yayınevi`
 --
 ALTER TABLE `yayınevi`
-  ADD PRIMARY KEY (`YayıneviNo`),
-  ADD UNIQUE KEY `YayıneviAdı` (`YayıneviAdı`);
+  ADD PRIMARY KEY (`YayıneviNo`);
 
 --
 -- Tablo için indeksler `yazarbilgileri`
 --
 ALTER TABLE `yazarbilgileri`
-  ADD PRIMARY KEY (`YazarNo`),
-  ADD UNIQUE KEY `YazarAdı` (`YazarAdı`),
-  ADD UNIQUE KEY `YazarUrl` (`YazarURL`);
+  ADD PRIMARY KEY (`YazarNo`);
 
 --
 -- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
