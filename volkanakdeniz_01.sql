@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 04 Kas 2020, 13:08:07
+-- Üretim Zamanı: 04 Kas 2020, 13:31:31
 -- Sunucu sürümü: 10.4.14-MariaDB
 -- PHP Sürümü: 7.4.10
 
@@ -20,14 +20,16 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `volkanakdeniz_01`
 --
+CREATE DATABASE IF NOT EXISTS `volkanakdeniz_01` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `volkanakdeniz_01`;
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `bagısbilgisi`
+-- Tablo için tablo yapısı `bagisbilgisi`
 --
 
-CREATE TABLE `bagısbilgisi` (
+CREATE TABLE `bagisbilgisi` (
   `BagısNo` int(11) NOT NULL COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n',
   `BagısTipi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisi ismi ve  özel mi yoksa kurum mu bagış yapıyor bilgisi girilecek\r\n',
   `BagısAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin, ismi girilecek.\r\n',
@@ -35,10 +37,10 @@ CREATE TABLE `bagısbilgisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Tablo döküm verisi `bagısbilgisi`
+-- Tablo döküm verisi `bagisbilgisi`
 --
 
-INSERT INTO `bagısbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPosta`) VALUES
+INSERT INTO `bagisbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPosta`) VALUES
 (1, 'kisi bagısı', 'Volkan Akdeniz', 'volkan_98fb@gmail.com'),
 (2, 'kisi', 'Ahmet Dursun', 'ahmett99@gmail.com'),
 (3, 'özel', 'hacettepe kütüphanesi', 'hacettepete@edu.tr.com'),
@@ -84,10 +86,10 @@ INSERT INTO `kitapbilgileri` (`KitapKayıtNo`, `ISBN`, `KitapYayımTarihi`, `Kit
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `yayınevi`
+-- Tablo için tablo yapısı `yayinevi`
 --
 
-CREATE TABLE `yayınevi` (
+CREATE TABLE `yayinevi` (
   `YayıneviNo` int(11) NOT NULL COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
   `YayıneviKayıtTarihi` date NOT NULL DEFAULT current_timestamp() COMMENT 'Yayınevi kayıt tarihi sisteme girilecektir.\r\n',
   `YayıneviAdı` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevi ismine yer verilecek.\r\n',
@@ -96,10 +98,10 @@ CREATE TABLE `yayınevi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Tablo döküm verisi `yayınevi`
+-- Tablo döküm verisi `yayinevi`
 --
 
-INSERT INTO `yayınevi` (`YayıneviNo`, `YayıneviKayıtTarihi`, `YayıneviAdı`, `YayıneviUrl`, `YayıneviEPosta`) VALUES
+INSERT INTO `yayinevi` (`YayıneviNo`, `YayıneviKayıtTarihi`, `YayıneviAdı`, `YayıneviUrl`, `YayıneviEPosta`) VALUES
 (1, '2020-10-05', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
 (2, '2020-11-03', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
 (3, '2020-11-03', ' Kırmızı Kedi', 'https://www.kirmizikedi.com/', 'satis@kirmizikedi.com'),
@@ -145,9 +147,9 @@ INSERT INTO `yazarbilgileri` (`YazarNo`, `YazarAdı`, `YazarDoğum Tarihi`, `Yaz
 --
 
 --
--- Tablo için indeksler `bagısbilgisi`
+-- Tablo için indeksler `bagisbilgisi`
 --
-ALTER TABLE `bagısbilgisi`
+ALTER TABLE `bagisbilgisi`
   ADD PRIMARY KEY (`BagısNo`);
 
 --
@@ -157,9 +159,9 @@ ALTER TABLE `kitapbilgileri`
   ADD PRIMARY KEY (`KitapKayıtNo`);
 
 --
--- Tablo için indeksler `yayınevi`
+-- Tablo için indeksler `yayinevi`
 --
-ALTER TABLE `yayınevi`
+ALTER TABLE `yayinevi`
   ADD PRIMARY KEY (`YayıneviNo`);
 
 --
@@ -173,9 +175,9 @@ ALTER TABLE `yazarbilgileri`
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `bagısbilgisi`
+-- Tablo için AUTO_INCREMENT değeri `bagisbilgisi`
 --
-ALTER TABLE `bagısbilgisi`
+ALTER TABLE `bagisbilgisi`
   MODIFY `BagısNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n', AUTO_INCREMENT=28;
 
 --
@@ -185,9 +187,9 @@ ALTER TABLE `kitapbilgileri`
   MODIFY `KitapKayıtNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=25;
 
 --
--- Tablo için AUTO_INCREMENT değeri `yayınevi`
+-- Tablo için AUTO_INCREMENT değeri `yayinevi`
 --
-ALTER TABLE `yayınevi`
+ALTER TABLE `yayinevi`
   MODIFY `YayıneviNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=14;
 
 --
