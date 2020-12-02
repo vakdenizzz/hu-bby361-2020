@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 02 Ara 2020, 12:53:54
+-- Üretim Zamanı: 02 Ara 2020, 13:44:52
 -- Sunucu sürümü: 10.4.14-MariaDB
 -- PHP Sürümü: 7.4.10
 
@@ -26,32 +26,21 @@ USE `volkanakdeniz_01`;
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `alanbirlestirme`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `alanbirlestirme` (
-`Eser` varchar(99)
-,`YayınEviBilgisi` varchar(198)
-);
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `bagisbilgisi`
 --
 
 CREATE TABLE `bagisbilgisi` (
-  `BagısNo` int(11) NOT NULL COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n',
-  `BagısTipi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisi ismi ve  özel mi yoksa kurum mu bagış yapıyor bilgisi girilecek\r\n',
-  `BagısAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin, adı girilecek.\r\n',
-  `BagısEPosta` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin kurumsal iletisim icin kullandığı mail adresi girilecek.\r\n'
+  `BagisNo` int(11) NOT NULL COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n',
+  `BagisTipi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisi ismi ve  özel mi yoksa kurum mu bagış yapıyor bilgisi girilecek\r\n',
+  `BagisAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin, adı girilecek.\r\n',
+  `BagisEPosta` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Bagış yapan kurum veya kisinin kurumsal iletisim icin kullandığı mail adresi girilecek.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Tablo döküm verisi `bagisbilgisi`
 --
 
-INSERT INTO `bagisbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPosta`) VALUES
+INSERT INTO `bagisbilgisi` (`BagisNo`, `BagisTipi`, `BagisAdı`, `BagisEPosta`) VALUES
 (1, 'Kisi', 'Volkan Akdeniz', 'volkan_98fb@gmail.com'),
 (2, 'Kisi', 'Ahmet Dursun', 'ahmett99@gmail.com'),
 (3, 'Özel', 'Hacettepe kütüphanesi', 'hacettepete@edu.tr.com'),
@@ -66,59 +55,36 @@ INSERT INTO `bagisbilgisi` (`BagısNo`, `BagısTipi`, `BagısAdı`, `BagısEPost
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı durumu `derecebir`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `derecebir` (
-`KitapAdı` varchar(99)
-,`KitapAdetBilgisi` int(99)
-);
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı durumu `dörtkitaptanfazla`
--- (Asıl görünüm için aşağıya bakın)
---
-CREATE TABLE `dörtkitaptanfazla` (
-`KitapKayıtNo` int(11)
-,`ISBN` varchar(13)
-,`KitapYayımTarihi` year(4)
-,`KitapAdı` varchar(99)
-,`KitapAdetBilgisi` int(99)
-,`DilBilgisi` varchar(99)
-);
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `kitapbilgileri`
 --
 
 CREATE TABLE `kitapbilgileri` (
-  `KitapKayıtNo` int(11) NOT NULL COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
+  `KitapKayitNo` int(11) NOT NULL COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
   `ISBN` varchar(13) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitabın kimligi niteligi tasıyan ISBN bilgisi bu alana INT olarak girilecektir.\r\n',
   `KitapYayımTarihi` year(4) NOT NULL DEFAULT current_timestamp() COMMENT 'Kitabın basım tarihi sisteme girilecektir.\r\n',
-  `KitapAdı` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitap ismi girilecek.\r\n',
+  `KitapAdi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitap ismi girilecek.\r\n',
   `KitapAdetBilgisi` int(99) NOT NULL COMMENT 'Kitabın kütüphade kaç adet olduğu bilgisi girilecek\r\n',
-  `DilBilgisi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitabın hangi dilde yazıldıgı bilgisine yer verilecek\r\n'
+  `DilBilgisi` varchar(99) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Kitabın hangi dilde yazıldıgı bilgisine yer verilecek\r\n',
+  `BagisNo` int(11) NOT NULL COMMENT 'Bagıs Kayıt numarasıdır',
+  `YayineviNo` int(11) NOT NULL COMMENT 'Yayınevi kayıt no getirir',
+  `YazarNo` int(11) NOT NULL COMMENT 'Yazar kayıt numarasını getirir.'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Tablo döküm verisi `kitapbilgileri`
 --
 
-INSERT INTO `kitapbilgileri` (`KitapKayıtNo`, `ISBN`, `KitapYayımTarihi`, `KitapAdı`, `KitapAdetBilgisi`, `DilBilgisi`) VALUES
-(1, '1234567899876', 2020, 'Kürk Mantolu Madonna', 1, 'Türkçe'),
-(2, '2234567899879', 2020, 'Hayvan Ciftligi', 0, 'Türkçe'),
-(3, '4334567899856', 2020, 'Körlük', 1, 'Türkçe'),
-(4, '3634567899645', 2020, 'Fareler ve İnsanlar', 2, 'Türkçe'),
-(5, '7534567899893', 2020, 'Seker Portakalı', 4, 'Türkçe'),
-(6, '2734567899817', 2020, 'Simyacı', 8, 'Türkçe'),
-(7, '983456789665', 2018, 'Cesur Yeni Dünya', 3, 'İngilizce'),
-(8, '7434567897483', 2020, 'Baskalarının Hayatı', 5, 'İngilizce'),
-(9, '6634567893254', 2020, 'Kız Babası ve Kedi', 2, 'İngilizce'),
-(10, '6934567899833', 2020, 'Madeline Miller', 7, 'İngilizce');
+INSERT INTO `kitapbilgileri` (`KitapKayitNo`, `ISBN`, `KitapYayımTarihi`, `KitapAdi`, `KitapAdetBilgisi`, `DilBilgisi`, `BagisNo`, `YayineviNo`, `YazarNo`) VALUES
+(1, '1234567899876', 2020, 'Kürk Mantolu Madonna', 1, 'Türkçe', 0, 0, 0),
+(2, '2234567899879', 2020, 'Hayvan Ciftligi', 0, 'Türkçe', 0, 0, 0),
+(3, '4334567899856', 2020, 'Körlük', 1, 'Türkçe', 0, 0, 0),
+(4, '3634567899645', 2020, 'Fareler ve İnsanlar', 2, 'Türkçe', 0, 0, 0),
+(5, '7534567899893', 2020, 'Seker Portakalı', 4, 'Türkçe', 0, 0, 0),
+(6, '2734567899817', 2020, 'Simyacı', 8, 'Türkçe', 0, 0, 0),
+(7, '983456789665', 2018, 'Cesur Yeni Dünya', 3, 'İngilizce', 0, 0, 0),
+(8, '7434567897483', 2020, 'Baskalarının Hayatı', 5, 'İngilizce', 0, 0, 0),
+(9, '6634567893254', 2020, 'Kız Babası ve Kedi', 2, 'İngilizce', 0, 0, 0),
+(10, '6934567899833', 2020, 'Madeline Miller', 7, 'İngilizce', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -127,14 +93,12 @@ INSERT INTO `kitapbilgileri` (`KitapKayıtNo`, `ISBN`, `KitapYayımTarihi`, `Kit
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `tablo1` (
-`KitapAdı` varchar(99)
-,`KitapAdetBilgisi` int(99)
+`BagisAdı` varchar(99)
+,`BagisTipi` varchar(99)
+,`KitapAdi` varchar(99)
 ,`DilBilgisi` varchar(99)
-,`BagısTipi` varchar(99)
-,`BagısAdı` varchar(99)
-,`YayıneviAdı` varchar(98)
-,`YayıneviUrl` varchar(98)
-,`AD_SOYAD` varchar(199)
+,`KitapAdetBilgisi` int(99)
+,`AD_SOYAD` varchar(198)
 );
 
 -- --------------------------------------------------------
@@ -144,12 +108,30 @@ CREATE TABLE `tablo1` (
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `tablo2` (
-`KitapAdı` varchar(99)
-,`KitapAdetBilgisi` int(99)
+`BagisAdı` varchar(99)
+,`KitapAdi` varchar(99)
 ,`DilBilgisi` varchar(99)
-,`YayıneviAdı` varchar(98)
-,`YayıneviUrl` varchar(98)
-,`AD_SOYAD` varchar(199)
+,`AD_SOYAD` varchar(198)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı durumu `tablo3`
+-- (Asıl görünüm için aşağıya bakın)
+--
+CREATE TABLE `tablo3` (
+`KitapAdetBilgisi` int(99)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı durumu `tablo4`
+-- (Asıl görünüm için aşağıya bakın)
+--
+CREATE TABLE `tablo4` (
+`KitapYayımTarihi` year(4)
 );
 
 -- --------------------------------------------------------
@@ -159,18 +141,18 @@ CREATE TABLE `tablo2` (
 --
 
 CREATE TABLE `yayinevi` (
-  `YayıneviNo` int(11) NOT NULL COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
-  `YayıneviKayıtTarihi` date NOT NULL DEFAULT current_timestamp() COMMENT 'Yayınevi kayıt tarihi sisteme girilecektir.\r\n',
-  `YayıneviAdı` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevi ismine yer verilecek.\r\n',
-  `YayıneviUrl` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevine ait web sayfası veya sosyal medya linki yer alacak.\r\n',
-  `YayıneviEPosta` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevinin  kurumsal iletisimi gerceklestirdigi e posta adresi yer alacak.\r\n'
+  `YayineviNo` int(11) NOT NULL COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n',
+  `YayineviKayıtTarihi` date NOT NULL DEFAULT current_timestamp() COMMENT 'Yayınevi kayıt tarihi sisteme girilecektir.\r\n',
+  `YayineviAdı` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevi ismine yer verilecek.\r\n',
+  `YayineviUrl` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevine ait web sayfası veya sosyal medya linki yer alacak.\r\n',
+  `YayineviEPosta` varchar(98) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Yayınevinin  kurumsal iletisimi gerceklestirdigi e posta adresi yer alacak.\r\n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Tablo döküm verisi `yayinevi`
 --
 
-INSERT INTO `yayinevi` (`YayıneviNo`, `YayıneviKayıtTarihi`, `YayıneviAdı`, `YayıneviUrl`, `YayıneviEPosta`) VALUES
+INSERT INTO `yayinevi` (`YayineviNo`, `YayineviKayıtTarihi`, `YayineviAdı`, `YayineviUrl`, `YayineviEPosta`) VALUES
 (1, '2020-10-05', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
 (2, '2020-11-03', 'Can Yayınları', 'https://canyayinlari.com/', 'dosya@canyayinlari.com'),
 (3, '2020-11-03', ' Kırmızı Kedi', 'https://www.kirmizikedi.com/', 'satis@kirmizikedi.com'),
@@ -215,38 +197,11 @@ INSERT INTO `yazarbilgileri` (`YazarNo`, `YazarAdi`, `YazarSoyad`, `YazarDoğum 
 -- --------------------------------------------------------
 
 --
--- Görünüm yapısı `alanbirlestirme`
---
-DROP TABLE IF EXISTS `alanbirlestirme`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `alanbirlestirme`  AS  select `k`.`KitapAdı` AS `Eser`,concat(`y`.`YayıneviAdı`,'--',`y`.`YayıneviEPosta`) AS `YayınEviBilgisi` from (`kitapbilgileri` `k` join `yayinevi` `y`) ;
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `derecebir`
---
-DROP TABLE IF EXISTS `derecebir`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `derecebir`  AS  select `k`.`KitapAdı` AS `KitapAdı`,`k`.`KitapAdetBilgisi` AS `KitapAdetBilgisi` from `kitapbilgileri` `k` where `k`.`KitapAdetBilgisi` < 6 ;
-
--- --------------------------------------------------------
-
---
--- Görünüm yapısı `dörtkitaptanfazla`
---
-DROP TABLE IF EXISTS `dörtkitaptanfazla`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `dörtkitaptanfazla`  AS  select `kitapbilgileri`.`KitapKayıtNo` AS `KitapKayıtNo`,`kitapbilgileri`.`ISBN` AS `ISBN`,`kitapbilgileri`.`KitapYayımTarihi` AS `KitapYayımTarihi`,`kitapbilgileri`.`KitapAdı` AS `KitapAdı`,`kitapbilgileri`.`KitapAdetBilgisi` AS `KitapAdetBilgisi`,`kitapbilgileri`.`DilBilgisi` AS `DilBilgisi` from `kitapbilgileri` where `kitapbilgileri`.`KitapAdetBilgisi` > 3 ;
-
--- --------------------------------------------------------
-
---
 -- Görünüm yapısı `tablo1`
 --
 DROP TABLE IF EXISTS `tablo1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo1`  AS  select `k`.`KitapAdı` AS `KitapAdı`,`k`.`KitapAdetBilgisi` AS `KitapAdetBilgisi`,`k`.`DilBilgisi` AS `DilBilgisi`,`b`.`BagısTipi` AS `BagısTipi`,`b`.`BagısAdı` AS `BagısAdı`,`e`.`YayıneviAdı` AS `YayıneviAdı`,`e`.`YayıneviUrl` AS `YayıneviUrl`,concat(`y`.`YazarAdi`,' ',`y`.`YazarSoyad`) AS `AD_SOYAD` from (((`bagisbilgisi` `b` join `kitapbilgileri` `k`) join `yayinevi` `e`) join `yazarbilgileri` `y`) where `b`.`BagısNo` = `k`.`KitapKayıtNo` and `b`.`BagısNo` = `e`.`YayıneviNo` and `b`.`BagısNo` = `y`.`YazarNo` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo1`  AS  select `b`.`BagisAdı` AS `BagisAdı`,`b`.`BagisTipi` AS `BagisTipi`,`k`.`KitapAdi` AS `KitapAdi`,`k`.`DilBilgisi` AS `DilBilgisi`,`k`.`KitapAdetBilgisi` AS `KitapAdetBilgisi`,concat(`y`.`YazarAdi`,'',`y`.`YazarSoyad`) AS `AD_SOYAD` from (((`bagisbilgisi` `b` join `kitapbilgileri` `k`) join `yayinevi` `e`) join `yazarbilgileri` `y`) where `b`.`BagisNo` = `k`.`KitapKayitNo` and `b`.`BagisNo` = `e`.`YayineviNo` and `b`.`BagisNo` = `y`.`YazarNo` ;
 
 -- --------------------------------------------------------
 
@@ -255,7 +210,25 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `tablo2`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo2`  AS  select `k`.`KitapAdı` AS `KitapAdı`,`k`.`KitapAdetBilgisi` AS `KitapAdetBilgisi`,`k`.`DilBilgisi` AS `DilBilgisi`,`e`.`YayıneviAdı` AS `YayıneviAdı`,`e`.`YayıneviUrl` AS `YayıneviUrl`,concat(`y`.`YazarAdi`,' ',`y`.`YazarSoyad`) AS `AD_SOYAD` from ((`kitapbilgileri` `k` join `yayinevi` `e`) join `yazarbilgileri` `y`) where `k`.`KitapKayıtNo` = `e`.`YayıneviNo` and `k`.`KitapKayıtNo` = `y`.`YazarNo` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo2`  AS  select `b`.`BagisAdı` AS `BagisAdı`,`k`.`KitapAdi` AS `KitapAdi`,`k`.`DilBilgisi` AS `DilBilgisi`,concat(`y`.`YazarAdi`,'',`y`.`YazarSoyad`) AS `AD_SOYAD` from (((`bagisbilgisi` `b` join `kitapbilgileri` `k`) join `yayinevi` `e`) join `yazarbilgileri` `y`) where `b`.`BagisNo` = `k`.`KitapKayitNo` and `b`.`BagisNo` = `e`.`YayineviNo` and `b`.`BagisNo` = `y`.`YazarNo` ;
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı `tablo3`
+--
+DROP TABLE IF EXISTS `tablo3`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo3`  AS  select `k`.`KitapAdetBilgisi` AS `KitapAdetBilgisi` from `kitapbilgileri` `k` where `k`.`KitapAdetBilgisi` < 3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı `tablo4`
+--
+DROP TABLE IF EXISTS `tablo4`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tablo4`  AS  select `k`.`KitapYayımTarihi` AS `KitapYayımTarihi` from `kitapbilgileri` `k` where `k`.`KitapYayımTarihi` > 2010 ;
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -265,19 +238,19 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Tablo için indeksler `bagisbilgisi`
 --
 ALTER TABLE `bagisbilgisi`
-  ADD PRIMARY KEY (`BagısNo`);
+  ADD PRIMARY KEY (`BagisNo`);
 
 --
 -- Tablo için indeksler `kitapbilgileri`
 --
 ALTER TABLE `kitapbilgileri`
-  ADD PRIMARY KEY (`KitapKayıtNo`);
+  ADD PRIMARY KEY (`KitapKayitNo`);
 
 --
 -- Tablo için indeksler `yayinevi`
 --
 ALTER TABLE `yayinevi`
-  ADD PRIMARY KEY (`YayıneviNo`);
+  ADD PRIMARY KEY (`YayineviNo`);
 
 --
 -- Tablo için indeksler `yazarbilgileri`
@@ -293,19 +266,19 @@ ALTER TABLE `yazarbilgileri`
 -- Tablo için AUTO_INCREMENT değeri `bagisbilgisi`
 --
 ALTER TABLE `bagisbilgisi`
-  MODIFY `BagısNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n', AUTO_INCREMENT=28;
+  MODIFY `BagisNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kurum veya kisi  bilgilerine ait numara sırayla ve otomatik bir sekilde artıs gösterecek.\r\n', AUTO_INCREMENT=28;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kitapbilgileri`
 --
 ALTER TABLE `kitapbilgileri`
-  MODIFY `KitapKayıtNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=25;
+  MODIFY `KitapKayitNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Kitap Bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=25;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `yayinevi`
 --
 ALTER TABLE `yayinevi`
-  MODIFY `YayıneviNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=14;
+  MODIFY `YayineviNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Yayınevi bilgilerine ait numara sırayla otomatik bir sekilde artıs gösterecek\r\n', AUTO_INCREMENT=14;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `yazarbilgileri`
