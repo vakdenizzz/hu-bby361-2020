@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Raleway&family=Piedra&family=Titillium+Web&display=swap');
+    
+body{
+font-family: 'Dosis', sans-serif;
+
+}
+
+#ust{
+background-image: url(resim/arkaplan.jpg)
+}
+.aralik-genis{
+line-height: 2;
+}
+
+@media only screen and (max-width: 767px) {
+    .w-50{
+    width:80% !important;
+       
+    }
+    
+    #menubuton{
+    visibility:visible !important;
+    }
+    .w-25{
+    width:50% !important;
+    }
+    
+    
+  }
